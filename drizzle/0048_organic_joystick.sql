@@ -1,0 +1,1 @@
+ALTER TABLE "collaboration_requests" ADD COLUMN "recipient_hidden_at" timestamp with time zone;

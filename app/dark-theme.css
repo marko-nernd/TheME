@@ -1,0 +1,73 @@
+/* One dark canvas across public pages, workspaces, forms and checkout. */
+:root {
+  color-scheme: dark;
+  --paper: #141519;
+  --theme-dark: #141519;
+  --ink: #f1f2f6;
+  --body-text-color: #f1f2f6;
+  --muted: #a7a9b6;
+  --heading-color: #f1f2f6;
+  --header-background: #191a20;
+  --header-text: #fff;
+  --surface-color: #202127;
+  --input-background: #17181d;
+  --input-text: #f1f2f6;
+  --brand-border: #34353f;
+  --button-radius: 8px;
+  --heading-xl: 48px;
+  --heading-lg: 40px;
+  --heading-md: 24px;
+  --line: rgba(255,255,255,.14);
+  --link-color: #ff72b8;
+  --color-background-surface: #202127;
+  --color-background-default: #141519;
+  --color-text-primary: #f1f2f6;
+  --color-text-secondary: #a7a9b6;
+  --color-border-emphasized: #34353f;
+}
+html, body { background: var(--paper); color: var(--ink); }
+html { scroll-padding-top: 92px; }
+body :where(input:not([type="checkbox"]):not([type="radio"]):not([type="range"]):not([type="color"]), select, textarea) { color-scheme: dark; background-color: var(--input-background); color: var(--input-text); border-color: var(--brand-border); }
+input::placeholder, textarea::placeholder { color: #93939d; opacity: 1; }
+select option { background: var(--input-background); color: var(--input-text); }
+:where(a,button,input,select,textarea,summary):focus-visible { outline: 2px solid var(--accent); outline-offset: 4px; }
+::selection { background: #ff2d95; color: white; }
+body :is(.page-hero,.role-dashboard-hero,.member-home,.creative-dashboard-home,.host-event-hub,.host-event-manager,.dashboard-connections,.dashboard-profile,.dashboard-billing,.simple-member-billing,.member-payment-history,.member-event-payment-history,.host-transaction-billing,.profile-access-notice,.public-directory-content,.platform-journey,.event-sponsors-section,.host-payout-setup,.event-pass-page,.proposal-preview-page,.membership-page,.auth-panel,.signup-wizard-page) { background: var(--paper); }
+body :is(.section-intro,.member-home p,.member-booking-list p,.dashboard-tab-description,.host-check-in p,.host-payout-setup p,.event-pass-card dt,.pass-practical p,.pass-qr p,.host-event-hub p,.ux-section-header p,.dashboard-empty p) { color: var(--muted); }
+body :is(.member-home h2,.member-home h3,.member-booking-list h3,.dashboard-list-panel h3,.dashboard-action-card h3,.host-event-hub h2,.host-event-hub h3,.host-check-in h3,.host-payout-setup h2,.event-pass-card h2,.event-pass-card h3,.public-empty-state h3,.join-event-layout h2,.join-event-layout h3) { color: var(--ink); }
+body :is(.astryx-wizard-shell,.astryx-admin-workspace,.admin-shell) { --color-background-surface: var(--surface-color); --color-text-primary: var(--ink); --color-text-secondary: var(--muted); --color-border-emphasized: var(--brand-border); }
+body :is(.dashboard-local-nav,.dashboard-subtabs > nav,.dashboard-tab-description) { background: var(--paper); border-color: var(--brand-border); }
+.admin-tabs { background: #0b0b0c; border-color: var(--brand-border); }
+.admin-tabs button { color: #a7a7af; }
+.admin-tabs button.is-active, .admin-tabs button[aria-selected="true"] { background: var(--accent); color: white; }
+.footer-bottom, .footer-top > div > p, .footer-link-columns strong, .membership-actions > span { color: #a7a7af; }
+body :is(.dashboard-subtabs,.dashboard-profile-subtabs,.admin-tab-nav,.admin-page-tabs) button { color: var(--ink); }
+body :is(.dashboard-subtabs,.dashboard-profile-subtabs,.admin-tab-nav,.admin-page-tabs) button[aria-selected="true"], body .dashboard-profile-subtabs button.is-active { background: var(--accent); color: white; }
+body :is(.member-home-grid article,.host-event-cards > button,.event-hub-metrics article,.event-hub-payments details,.host-refund-queue article,.event-pass-card,.dashboard-event-record-info,.dashboard-booking-confirmation,.dashboard-booking-pending) { border-color: var(--brand-border); }
+body :is(.event-sponsor-grid img,.sponsor-logo-manager img,.admin-sponsor-name > img,.admin-sponsor-hover-card header img,.event-receipt-confirmation img) { background: #fff; }
+.pass-qr > img { background: #fff; border: 8px solid #fff; }
+.button-light, .button-small { background: transparent; color: white; border-color: #66666d; }
+.button-light:hover, .button-small:hover { background: var(--accent); border-color: var(--accent); color: white; }
+.home-hero-dock a:hover span { color: white; }
+.member-home .button-secondary, .event-pass-page .button-secondary, .host-payout-setup .button-secondary { color: #ff86c3; background: transparent; }
+.member-booking-list button, .host-check-in nav button { color: var(--ink); border-color: var(--brand-border); }
+.draft-status, .booking-next-step, .proposal-rejection-reason, .flake-report-note, .proposal-completion-check, .wizard-missing-fields { background: #2b1421; color: #f5bdd9 !important; }
+.proposal-completion-check p, .wizard-missing-fields a { color: #f5bdd9; }
+.signup-wizard-actions { box-shadow: 0 -18px 30px #0b0b0ceb; }
+.signup-next-steps span { color: #f5bdd9; }
+body :is(.booking-state.confirmed,.pass-status.is-confirmed,.payment-message.success,.recovery-success > span,.sponsor-marketplace-steps li.is-complete) { background: #153825; color: #80e2ae; }
+body :is(.booking-state.awaiting_payment,.booking-state.approved,.host-participant-status) { background: #3c2d0c; color: #ffda83 !important; }
+body .host-participant-status.status-confirmed { background: #153825; color: #80e2ae !important; }
+body :is(.host-participant-status.status-cancelled,.host-participant-status.status-declined,.host-participant-status.status-refunded,.admin-save-notice.is-error,.payment-message.error,.signup-wizard-error) { background: #3b1824; color: #ffa4bf !important; }
+body :is(.media-library-copy > div span.is-unused,.rating-flake-flag,.reliability-event-list article.is-flake > span) { color: #ffa4bf; }
+.admin-theme-preview { color-scheme: normal; }
+.admin-theme-preview.is-light .admin-theme-preview-content > p:not(.admin-preview-muted) { color: #222 !important; }
+.admin-theme-preview.is-light .admin-preview-muted { color: #666 !important; }
+.admin-theme-preview.is-light :is(h3,h4,h5) { color: #b40058 !important; }
+.simple-member-mobile-nav { background: #0b0b0c; border-top-color: var(--brand-border); }
+@media print {
+  html, body, .event-receipt-page, .event-pass-page, .event-receipt, .event-pass-card { background: #fff !important; color: #171715 !important; color-scheme: light; }
+  .site-header-shell { display: none; }
+  :is(.event-receipt,.event-pass-card) :is(h1,h2,h3,p,span,strong,small,dt,dd,section,dl,div) { color: #171715 !important; background-color: transparent !important; }
+  :is(.event-receipt,.event-pass-card) img { background: #fff !important; }
+}

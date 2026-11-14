@@ -1,0 +1,2 @@
+DROP INDEX "event_participations_event_member_path_unique";--> statement-breakpoint
+CREATE UNIQUE INDEX "event_participations_event_member_unique" ON "event_participations" USING btree ("event_id","member_id");

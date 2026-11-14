@@ -1,0 +1,3 @@
+import Link from "next/link";
+import AuthShell from "@/components/auth-shell";
+export default function PendingAccountPage() { return <AuthShell centered eyebrow="Application status" title="Your application is under review." intro="Your email is verified. An administrator will review your account before you can sign in."><div className="recovery-success"><span>✓</span><h2>Email verification complete</h2><p>You do not need to submit another application. You will receive an email when your account is approved.</p><Link className="button" href="/login">Back to sign in →</Link><Link href="/events">Browse public events</Link></div></AuthShell>; }

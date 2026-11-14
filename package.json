@@ -1,0 +1,55 @@
+{
+  "name": "model-escape-local",
+  "version": "0.1.0",
+  "private": true,
+  "engines": {
+    "node": ">=22.13.0"
+  },
+  "scripts": {
+    "dev": "next dev",
+    "build": "node scripts/generate-media-usage-manifest.mjs && next build --webpack",
+    "start": "next start",
+    "test": "npm run build && node --test tests/*.test.mjs",
+    "lint": "eslint . --ignore-pattern .next",
+    "db:generate": "drizzle-kit generate",
+    "db:migrate": "node scripts/migrate.mjs",
+    "db:seed": "node scripts/seed.mjs",
+    "stripe:setup": "node scripts/setup-stripe-prices.mjs",
+    "accounts:sweep": "node scripts/account-lifecycle-worker.mjs --once",
+    "monitor:check": "node scripts/system-monitor-worker.mjs --once",
+    "smoke:routes": "node scripts/route-smoke-test.mjs"
+  },
+  "dependencies": {
+    "@astryxdesign/core": "^0.1.8",
+    "@astryxdesign/theme-neutral": "^0.1.8",
+    "@fontsource-variable/montserrat": "^5.3.0",
+    "@stripe/react-stripe-js": "^6.8.0",
+    "@stripe/stripe-js": "^9.12.0",
+    "country-state-city": "^3.2.1",
+    "drizzle-orm": "0.45.2",
+    "next": "^16.2.11",
+    "nodemailer": "^7.0.13",
+    "pg": "^8.22.0",
+    "qrcode": "^1.5.4",
+    "react": "19.2.6",
+    "react-dom": "19.2.6",
+    "sharp": "^0.34.5",
+    "stripe": "^22.3.2"
+  },
+  "devDependencies": {
+    "@astryxdesign/cli": "^0.1.8",
+    "@tailwindcss/postcss": "4.2.1",
+    "@types/node": "22.19.19",
+    "@types/nodemailer": "^7.0.12",
+    "@types/pg": "^8.20.0",
+    "@types/qrcode": "^1.5.6",
+    "@types/react": "19.2.14",
+    "@types/react-dom": "19.2.3",
+    "drizzle-kit": "0.31.10",
+    "eslint": "9.39.4",
+    "eslint-config-next": "16.2.6",
+    "tailwindcss": "4.2.1",
+    "typescript": "5.9.3"
+  },
+  "type": "module"
+}

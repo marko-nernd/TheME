@@ -1,0 +1,1 @@
+ALTER TYPE "public"."proposal_role" ADD VALUE 'attendee' BEFORE 'sponsor';

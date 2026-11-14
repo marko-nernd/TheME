@@ -1,0 +1,227 @@
+/* Shared admin-inspired visual language. Keep application behavior and print receipts intact. */
+:root {
+  --workspace-canvas: #141519;
+  --workspace-panel: #202127;
+  --workspace-field: #17181d;
+  --workspace-border: #34353f;
+  --workspace-muted: #a7a9b6;
+  --workspace-radius: 8px;
+}
+
+@media screen {
+  body.platform-ui { background: var(--paper, var(--workspace-canvas)); }
+  body.platform-ui:not(:has(.admin-shell,.admin-login-page)) {
+    font-size: var(--body-font-size,16px);
+    line-height: 1.65;
+    -webkit-font-smoothing: antialiased;
+  }
+  body.platform-ui:not(:has(.admin-shell,.admin-login-page)) :is(h1,h2,h3,h4) {
+    overflow-wrap: anywhere;
+    line-height: 1.2;
+    letter-spacing: -.025em;
+    font-weight: 650;
+  }
+  body.platform-ui:not(:has(.admin-shell,.admin-login-page)) h1 { color: var(--heading-color); }
+  body.platform-ui:not(:has(.admin-shell,.admin-login-page)) :is(.section h2,.content-section > h2,.two-column h2,.light-heading,.membership h2,.scroll-story h2,.section-heading h2,.host-event-manager-heading h2,.ux-section-header h2) {
+    font-size: clamp(26px,3vw,var(--heading-lg,40px));
+    line-height: 1.25;
+    color: var(--ink);
+  }
+  body.platform-ui:not(:has(.admin-shell,.admin-login-page)) :is(.eyebrow,.astryx-kicker) {
+    margin-bottom: 12px;
+    color: var(--muted);
+    font-size: 11px;
+    line-height: 1.5;
+    font-weight: 650;
+    letter-spacing: .12em;
+  }
+  body.platform-ui:not(:has(.admin-shell,.admin-login-page)) :is(.section-intro,.page-hero-content > p:last-child,.prose > p,.legal-copy > p) { font-size: 15px; line-height: 1.75; color: var(--muted); }
+  body.platform-ui:not(:has(.admin-shell,.admin-login-page)) :is(.section,.content-section,.public-directory-content) { padding: 56px clamp(20px,4.4vw,76px); }
+  body.platform-ui:not(:has(.admin-shell,.admin-login-page)) .section-heading { gap: 24px; margin-bottom: 28px; }
+  body.platform-ui:not(:has(.admin-shell,.admin-login-page)) .page-hero { min-height: 300px; padding: 52px clamp(20px,4.4vw,76px); border-bottom: 1px solid var(--brand-border); background: var(--paper); }
+  body.platform-ui:not(:has(.admin-shell,.admin-login-page)) :is(.page-hero h1,.wizard-intro h1,.auth-copy h1,.role-dashboard-hero h1) { font-size: clamp(30px,3.6vw,var(--heading-xl,48px)); line-height: 1.15; letter-spacing: -.035em; }
+  body.platform-ui:not(:has(.admin-shell,.admin-login-page)) .page-hero-content > p:last-child { margin-top: 18px; }
+
+  /* One compact toolbar, restrained menus, and consistent action sizes. */
+  .platform-ui .site-header-shell { background: var(--header-background); }
+  .platform-ui .site-header-shell .site-header { background: var(--header-background); border-color: var(--brand-border); }
+  .platform-ui .main-menu a { font-size: 14px; }
+  .platform-ui .mega-menu-panel { background: var(--header-background); border-color: var(--brand-border); }
+  .platform-ui .mega-menu-links > a { border-color: var(--brand-border); border-radius: 6px; padding-inline: 14px 32px; }
+  .platform-ui .mega-menu-links > a:hover { background: var(--surface-color); }
+  .platform-ui .mega-menu-image { border-radius: 8px; border: 1px solid var(--brand-border); }
+  .platform-ui .site-header-shell .account-menu-popover { background: var(--dropdown-background); border-color: var(--brand-border); border-radius: 8px; }
+  .platform-ui .account-menu-popover :is(a,button) { border-radius: 6px; }
+  .platform-ui .account-menu-popover :is(a,button):hover { background: var(--accent); color: #fff; }
+  body.platform-ui:not(:has(.admin-shell,.admin-login-page)) .button {
+    min-height: 46px;
+    padding: 12px 22px;
+    gap: 14px;
+    border-radius: var(--button-radius,8px);
+    font-size: 14px;
+    line-height: 1.4;
+    font-weight: 650;
+    letter-spacing: 0;
+    background: var(--button-background);
+    border-color: var(--button-background);
+    color: var(--button-text);
+    transition: background .18s,border-color .18s;
+  }
+  body.platform-ui:not(:has(.admin-shell,.admin-login-page)) .button:hover { transform: none; background: var(--button-hover); border-color: var(--button-hover); color: #fff; }
+  body.platform-ui:not(:has(.admin-shell,.admin-login-page)) .button:is(.button-secondary,.button-light,.button-small) { background: var(--surface-color); color: var(--ink); border-color: var(--brand-border); }
+  body.platform-ui:not(:has(.admin-shell,.admin-login-page)) .button:is(.button-secondary,.button-light,.button-small):hover { background: var(--accent); border-color: var(--accent); color: #fff; }
+  body.platform-ui:not(:has(.admin-shell,.admin-login-page)) :is(input:not([type="checkbox"]):not([type="radio"]):not([type="range"]):not([type="color"]),select,textarea) {
+    min-height: 46px;
+    max-width: 100%;
+    padding: 11px 13px;
+    border: 1px solid var(--brand-border);
+    border-radius: 6px;
+    background: var(--input-background);
+    color: var(--input-text);
+    font: inherit;
+    font-size: 15px;
+    line-height: 1.5;
+  }
+  body.platform-ui:not(:has(.admin-shell,.admin-login-page)) :is(input,select,textarea):focus-visible { outline: 2px solid var(--input-focus); outline-offset: 2px; }
+  body.platform-ui:not(:has(.admin-shell,.admin-login-page)) :is(input[type="checkbox"],input[type="radio"]) { accent-color: var(--accent); }
+  body.platform-ui:not(:has(.admin-shell,.admin-login-page)) label { font-size: 14px; letter-spacing: 0; text-transform: none; color: var(--ink); line-height: 1.6; }
+  body.platform-ui:not(:has(.admin-shell,.admin-login-page)) :is(.quiet-dark-link,.quiet-link,.cinematic-text-link) { font-size: 14px; min-height: 44px; line-height: 1.5; }
+
+  /* Public pages retain their photography, but share the workspace's surfaces. */
+  .platform-ui .home-cinematic, .platform-ui .home-cinematic > .section, .platform-ui .scroll-story { background: var(--paper); border-color: var(--brand-border); }
+  .platform-ui .home-cinematic .hero { height: calc(82svh - 72px); min-height: 480px; max-height: 760px; background: var(--paper); }
+  .platform-ui .home-cinematic .hero-copy { padding: 55px 4.4vw 130px; }
+  .platform-ui .home-cinematic .hero h1 { font-size: clamp(34px,5vw,64px); line-height: 1.12; letter-spacing: -.035em; }
+  .platform-ui .home-cinematic .hero-lede { font-size: 16px; }
+  .platform-ui .home-cinematic .image-wash { background: linear-gradient(90deg,#141519c9,#14151928 85%),linear-gradient(0deg,#141519,transparent 45%); }
+  .platform-ui .home-cinematic .home-hero-dock { background: #202127e8; border: 1px solid var(--brand-border); border-radius: 8px; }
+  .platform-ui .home-cinematic .slide-controls { left: 4.4vw; }
+  .platform-ui .scroll-intro { min-height: 75svh; padding-inline: 4.4vw; }
+  .platform-ui .scroll-intro-sticky { min-height: 60svh; }
+  .platform-ui .home-cinematic .scroll-statement { font-size: clamp(28px,3.8vw,48px) !important; line-height: 1.4; letter-spacing: -.025em; }
+  .platform-ui .scroll-story { padding: 56px 4.4vw 0; }
+  .platform-ui .scroll-story > header { margin-bottom: 32px; }
+  .platform-ui .scroll-story-steps h3 { font-size: clamp(24px,2.7vw,36px); }
+  .platform-ui .scroll-story-visual { border-radius: 8px; border-color: var(--brand-border); }
+  .platform-ui :is(.event-preview-card,.model-preview-image,.directory-event-card,.directory-model-card) { border-radius: 8px; border-color: var(--brand-border); background-color: var(--surface-color); }
+  .platform-ui .event-preview-inline h3 { font-size: clamp(24px,2.5vw,36px); line-height: 1.2; letter-spacing: -.025em; }
+  .platform-ui .event-preview-inline p { font-size: 12px; letter-spacing: .03em; }
+  .platform-ui .home-cinematic .event-preview-card { min-height: 380px; }
+  .platform-ui :is(.event-preview-hover-stats,.event-preview-popover,.model-preview-popover,.member-mini-profile) { border-radius: 8px; border-color: var(--brand-border); background-color: #202127f5; }
+  .platform-ui :is(.value-grid,.role-grid,.process-grid,.membership-start-grid,.host-plan-grid) { gap: 16px; border: 0; background: none; }
+  .platform-ui :is(.value-grid,.role-grid,.process-grid,.membership-start-grid,.host-plan-grid,.pricing-grid) > article,
+  .platform-ui :is(.price-card,.membership-apply-cta) { border: 1px solid var(--brand-border); border-radius: 8px; background: var(--surface-color); color: var(--ink); box-shadow: none; }
+  .platform-ui :is(.value-grid,.role-grid,.process-grid) article { padding: 26px; min-height: 210px; }
+  .platform-ui :is(.value-grid,.role-grid) h3 { margin-top: 28px; font-size: 22px; }
+  .platform-ui :is(.value-grid,.role-grid,.process-grid) p { font-size: 14px; color: var(--muted); }
+  .platform-ui :is(.cta-band,.home-cinematic .membership) { background: var(--surface-color); color: var(--ink); border-block: 1px solid var(--brand-border); }
+  .platform-ui footer, .platform-ui .home-cinematic footer { background: var(--header-background); border-top: 1px solid var(--brand-border); padding: 44px 4.4vw 24px; }
+  .platform-ui :is(.footer-bottom,.footer-link-columns a,.footer-top > div > p) { font-size: 13px; line-height: 1.7; }
+
+  /* All account types use the same navigation and panel treatment. */
+  .platform-ui .role-dashboard-hero { background: var(--paper); padding: 30px 4.4vw; border-bottom: 1px solid var(--brand-border); }
+  .platform-ui .role-dashboard-identity { background: var(--surface-color); border: 1px solid var(--brand-border); border-radius: 8px; padding: 16px; }
+  .platform-ui .dashboard-tabs { display: grid; grid-template-columns: 212px minmax(0,1fr); gap: 0 28px; align-items: start; max-width: 1680px; margin: 0 auto; padding: 28px 4.4vw 56px; }
+  .platform-ui .dashboard-local-nav { position: sticky; top: 96px; grid-column: 1; grid-row: 1 / 4; display: grid; align-content: start; gap: 6px; padding: 14px; border: 1px solid var(--brand-border); border-radius: 8px; background: var(--surface-color); overflow: visible; }
+  .platform-ui .dashboard-local-nav button { width: 100%; min-height: 46px; padding: 12px 14px; border: 1px solid transparent; border-radius: 6px; background: transparent; color: var(--muted); text-align: left; font-size: 14px; font-weight: 600; line-height: 1.4; }
+  .platform-ui .dashboard-local-nav button:hover { background: var(--input-background); color: var(--ink); }
+  .platform-ui .dashboard-local-nav button[aria-selected="true"] { background: var(--accent); border-color: var(--accent); color: #fff; }
+  .platform-ui .dashboard-tab-description { grid-column: 2; padding: 0 0 22px; margin: 0; border: 0; background: transparent; font-size: 14px; }
+  .platform-ui .dashboard-tab-panels { grid-column: 2; min-width: 0; }
+  .platform-ui .dashboard-tab-panels :is(.member-home,.creative-dashboard-home,.dashboard-workspace,.host-event-hub,.host-event-manager,.dashboard-connections,.dashboard-profile,.dashboard-billing,.dashboard-reviews-section,.simple-member-billing,.member-payment-history) { min-height: 0; padding: 0 0 30px; background: transparent; }
+  .platform-ui .dashboard-tab-panels :is(h2,.section-heading h2,.host-event-hub h2) { font-size: clamp(23px,2.5vw,30px); color: var(--ink); }
+  .platform-ui .dashboard-tab-panels :is(h3,.dashboard-list-panel h3) { font-size: 20px; color: var(--ink); }
+  .platform-ui .dashboard-tab-panels .section-heading { margin-bottom: 24px; }
+  .platform-ui :is(.member-home-grid article,.dashboard-list-panel,.dashboard-profile-card,.profile-control-panel,.creative-next-action,.creative-dashboard-actions > a,.host-approval-quick-access,.host-event-cards > button,.host-event-management-card,.event-hub-metrics article,.dashboard-request-card,.conversation-person,.member-event-card,.member-booking-list > article,.member-booking-list > details) { border: 1px solid var(--brand-border); border-radius: 8px; background: var(--surface-color); }
+  .platform-ui .member-home-grid { grid-template-columns: repeat(2,minmax(0,1fr)); gap: 16px; }
+  .platform-ui .member-home-grid article { padding: 24px; }
+  .platform-ui .member-home-grid article:last-child { grid-column: 1 / -1; }
+  .platform-ui .member-home-grid article > span:first-child { font-size: 11px; letter-spacing: .1em; color: var(--muted); }
+  .platform-ui :is(.dashboard-subtabs > nav,.dashboard-profile-subtabs) { padding: 0 0 16px; gap: 8px; border-color: var(--brand-border); background: transparent; }
+  .platform-ui :is(.dashboard-subtabs > nav,.dashboard-profile-subtabs,.member-event-tabs,.host-event-tabs,.billing-tabs) button { min-height: 44px; padding: 10px 16px; border: 1px solid var(--brand-border); border-radius: 6px; background: var(--surface-color); color: var(--ink); font-size: 14px; line-height: 1.4; font-weight: 600; }
+  .platform-ui :is(.dashboard-subtabs > nav,.dashboard-profile-subtabs,.member-event-tabs,.host-event-tabs,.billing-tabs) button:is([aria-selected="true"],.is-active) { background: var(--accent); border-color: var(--accent); color: white; }
+  .platform-ui :is(.dashboard-profile-form,.dashboard-avatar-panel,.portfolio-manager,.identity-verification-form,.dashboard-billing-card,.member-payment-history,.host-payout-setup) { border-radius: 8px; border-color: var(--brand-border); }
+  .platform-ui .dashboard-tab-panels :is(p,li,small,dt,dd) { font-size: 14px; line-height: 1.65; }
+  .platform-ui .dashboard-tab-panels :is(.dashboard-list-row,.dashboard-request-card,.conversation-message) { border-color: var(--brand-border); }
+  .platform-ui :is(.member-bottom-nav,.simple-member-mobile-nav) { background: var(--header-background); border-color: var(--brand-border); }
+
+  /* Sign-in, onboarding, event editing, sponsorship and payment forms. */
+  .platform-ui :is(.auth-page,.auth-panel,.signup-wizard-page,.wizard-page,.join-event-page,.membership-page) { background: var(--paper); }
+  .platform-ui .auth-panel { gap: 48px; padding: 56px 4.4vw; min-height: calc(100svh - 72px); }
+  .platform-ui :is(.auth-card,.signin-card,.signup-wizard-card,.signup-wizard-shell,.astryx-wizard-card,.astryx-step-panel,.sponsor-marketplace-card,.sponsor-partnership-summary,.sponsor-opportunity-card,.join-event-confirmation,.event-pass-card) { background: var(--surface-color); border: 1px solid var(--brand-border); border-radius: 10px; box-shadow: none; }
+  .platform-ui .signin-card-heading h2 { font-size: 26px; color: var(--ink); }
+  .platform-ui .auth-page-centered .auth-panel { padding: 32px 20px 56px; }
+  .platform-ui .auth-page-centered .auth-copy { padding: 0 0 24px; }
+  .platform-ui .auth-page-centered .auth-copy h1 { font-size: clamp(28px,3vw,36px); }
+  .platform-ui .auth-page-centered .auth-card { padding: 28px; }
+  .platform-ui .signup-wizard-heading h2 { font-size: 26px; line-height: 1.25; letter-spacing: -.025em; }
+  .platform-ui .signup-wizard-header { padding-bottom: 20px; }
+  .platform-ui .signup-stepper { margin-top: 20px; }
+  .platform-ui .signup-wizard-actions { position: static; min-height: 0; padding: 20px 0 0; background: transparent; box-shadow: none; }
+  .platform-ui .signup-back-button { border-radius: var(--button-radius); border-color: var(--brand-border); background: var(--input-background); font-size: 14px; }
+  .platform-ui .signup-back-button:hover { background: var(--accent); color: #fff; }
+  .platform-ui :is(.signin-card-heading p,.auth-copy > p:not(.eyebrow)) { font-size: 15px; color: var(--muted); }
+  .platform-ui .wizard-intro { padding: 40px 4.4vw; background: var(--paper); }
+  .platform-ui .join-event-layout { gap: 20px; margin-top: 0; border: 0; background: transparent; }
+  .platform-ui .join-event-layout > :is(article,form,.booking-payment-column) { padding: 28px; border: 1px solid var(--brand-border); border-radius: 10px; background: var(--surface-color); }
+  .platform-ui .join-event-layout :is(h2,h3) { font-size: 26px; }
+  .platform-ui :is(.event-detail-layout,.event-sponsors-section,.member-profile-intro,.member-portfolio,.profile-reputation) { background: var(--paper); }
+  .platform-ui .event-detail-layout { padding: 48px 4.4vw; gap: 36px; }
+  .platform-ui .event-detail-copy > h2 { font-size: clamp(28px,3vw,40px); }
+  .platform-ui :is(.event-details-card,.event-booking-card,.event-cost-card,.member-profile-info,.profile-access-notice,.reputation-panel) { border: 1px solid var(--brand-border); border-radius: 8px; background: var(--surface-color); }
+  .platform-ui .public-directory-page { background: var(--paper); }
+  .platform-ui .public-directory-hero { min-height: 300px; padding: 48px 4.4vw; background: var(--paper); }
+  .platform-ui .public-directory-hero h1 { font-size: clamp(30px,3.6vw,var(--heading-xl)); line-height: 1.15; letter-spacing: -.035em; }
+  .platform-ui :is(.public-directory-hero p,.directory-filter-bar,.directory-pagination) { font-size: 14px; }
+  .platform-ui :is(.directory-filter-bar,.directory-filters) { border-color: var(--brand-border); border-radius: 8px; background: var(--surface-color); }
+  .platform-ui .sponsor-marketplace { padding: 40px 4.4vw 64px; }
+  .platform-ui :is(.sponsor-marketplace-heading h2,.sponsor-marketplace-toolbar h2,.sponsor-selected-target h2) { font-size: clamp(26px,3vw,36px); line-height: 1.25; }
+  .platform-ui .sponsor-marketplace-steps { margin-bottom: 32px; border-radius: 8px; overflow: hidden; background: var(--surface-color); }
+  .platform-ui .sponsor-marketplace-steps li b { font-size: 13px; text-transform: none; }
+  .platform-ui :is(.sponsor-target-grid,.sponsor-person-grid,.sponsor-opportunity-grid) > a, .platform-ui .sponsor-offer-summary { border: 1px solid var(--brand-border); border-radius: 8px; background: var(--surface-color); }
+  .platform-ui .sponsor-target-grid > a:hover { background: var(--accent); color: #fff; }
+  .platform-ui .sponsor-target-grid > a:hover :is(h2,h3,p,span) { color: #fff; }
+  .platform-ui .embedded-checkout-heading { padding: 40px 4.4vw; background: var(--paper); gap: 28px; }
+  .platform-ui .embedded-checkout-heading h1 { font-size: clamp(30px,3.6vw,48px); line-height: 1.15; }
+  .platform-ui :is(.checkout-order-summary,.payment-element-shell,.embedded-checkout-shell) { border: 1px solid var(--brand-border); border-radius: 10px; background: var(--surface-color); }
+  .platform-ui .payment-element-intro h2 { font-size: 26px; line-height: 1.25; }
+  .platform-ui :is(.event-checkout-breakdown,.checkout-order-summary p,.payment-element-intro p) { font-size: 15px; }
+  .platform-ui .member-profile-intro h1, .platform-ui .generic-profile-page h1 { font-size: clamp(30px,3.6vw,48px); line-height: 1.15; letter-spacing: -.035em; }
+  .platform-ui :is(.ux-dialog,.avatar-crop-dialog,.crop-dialog,.event-edit-dialog,.confirm-dialog) { border: 1px solid var(--brand-border); border-radius: 10px; background: var(--surface-color); color: var(--ink); }
+  .platform-ui :is(.ux-dialog,.avatar-crop-dialog,.crop-dialog,.confirm-dialog) h2 { font-size: 26px; color: var(--ink); }
+  .platform-ui :is(.cookie-consent,.cookie-banner) { background: var(--surface-color); border: 1px solid var(--brand-border); border-radius: 10px; }
+
+  @media (max-width: 1000px) {
+    .platform-ui .dashboard-tabs { grid-template-columns: 170px minmax(0,1fr); gap: 0 20px; padding-inline: 20px; }
+    .platform-ui .dashboard-local-nav { padding: 8px; }
+    .platform-ui .dashboard-local-nav button { padding: 12px; }
+    .platform-ui .dashboard-panel-grid { grid-template-columns: 1fr; }
+  }
+  @media (max-width: 760px) {
+    .platform-ui .dashboard-tabs { display: block; padding: 16px 16px 84px; }
+    .platform-ui .dashboard-local-nav { display: flex; position: sticky; top: 72px; z-index: 18; gap: 6px; margin-bottom: 18px; padding: 8px; overflow-x: auto; border-radius: 8px; }
+    .platform-ui .dashboard-local-nav button { width: auto; flex: 0 0 auto; min-height: 44px; text-align: center; }
+    .platform-ui .dashboard-tab-description { padding-bottom: 20px; }
+    .platform-ui .member-home-grid { grid-template-columns: 1fr; }
+    .platform-ui .member-home-grid article:last-child { grid-column: auto; }
+    .platform-ui .member-home-grid article { padding: 20px; }
+    .platform-ui .role-dashboard-hero { padding: 24px 20px; }
+    .platform-ui .home-cinematic .hero { min-height: 460px; height: 75svh; }
+    .platform-ui .home-cinematic .hero-copy { padding: 36px 20px 90px; }
+    .platform-ui .home-cinematic .hero h1 { font-size: 36px; }
+    .platform-ui .home-cinematic .hero-lede { font-size: 15px; }
+    .platform-ui .scroll-intro { min-height: auto; padding: 48px 20px; }
+    .platform-ui .scroll-intro-sticky { min-height: auto; }
+    .platform-ui .scroll-story { padding: 48px 20px 0; }
+    .platform-ui .auth-panel { padding: 32px 20px; gap: 28px; }
+    .platform-ui .auth-page-centered .auth-card { padding: 20px; }
+    .platform-ui .join-event-layout { width: calc(100% - 32px); grid-template-columns: 1fr; }
+    .platform-ui .join-event-layout > :is(article,form,.booking-payment-column) { padding: 22px; }
+    .platform-ui .event-detail-layout { grid-template-columns: 1fr; padding: 32px 20px; }
+    .platform-ui :is(.membership-apply-cta,.membership-current-plan,.ux-section-header) { flex-wrap: wrap; align-items: flex-start; }
+    .platform-ui .footer-link-columns { grid-template-columns: repeat(2,minmax(0,1fr)); gap: 24px; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .platform-ui *, .platform-ui *::before, .platform-ui *::after { scroll-behavior: auto; transition-duration: .01ms !important; }
+  }
+}

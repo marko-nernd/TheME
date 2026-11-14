@@ -1,0 +1,8 @@
+import test from "node:test";
+import assert from "node:assert/strict";
+import {profileEditCharge} from "../lib/profile-edit-policy.ts";
+import {deletionCodeHash,deletionCodeMatches} from "../lib/account-deletion-policy.ts";
+import {tarEntryHeader,tarArchive} from "../lib/tar-archive.ts";
+test("three shared free changes, then name 1 credit and URL 3 credits",()=>{for(let used=0;used<3;used++)assert.deepEqual(profileEditCharge(used,0,true,true),{freeChange:true,credits:0});assert.equal(profileEditCharge(3,1,true,false).credits,1);assert.equal(profileEditCharge(3,3,false,true).credits,3);assert.equal(profileEditCharge(3,3,true,true).credits,3);assert.throws(()=>profileEditCharge(3,2,false,true),/PROFILE_CREDITS_REQUIRED/);assert.deepEqual(profileEditCharge(3,0,false,false),{freeChange:false,credits:0});});
+test("deletion codes are account-bound and malformed codes cannot match",()=>{const hash=deletionCodeHash("member-a","123456");assert(deletionCodeMatches("member-a","123456",hash));assert(!deletionCodeMatches("member-b","123456",hash));assert(!deletionCodeMatches("member-a","000000",hash));assert(!deletionCodeMatches("member-a","12345",hash));});
+test("download archive has valid padding and safe names",async()=>{assert.throws(()=>tarEntryHeader("../outside",1));assert.throws(()=>tarEntryHeader("/outside",1));async function* files(){yield{name:"account.json",data:Buffer.from("{}")};}const chunks=[];for await(const data of tarArchive(files()))chunks.push(data);assert.equal(Buffer.concat(chunks).length,2048);assert.equal(Buffer.concat(chunks).subarray(0,12).toString(),"account.json");});

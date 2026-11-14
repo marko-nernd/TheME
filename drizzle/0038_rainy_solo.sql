@@ -1,0 +1,2 @@
+ALTER TABLE "event_proposals" ADD COLUMN "included" jsonb DEFAULT '[]'::jsonb NOT NULL;--> statement-breakpoint
+ALTER TABLE "event_proposals" ADD COLUMN "requirements" jsonb DEFAULT '[]'::jsonb NOT NULL;

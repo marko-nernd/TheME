@@ -1,0 +1,91 @@
+{
+  "/images/creative-planning.png": [
+    "app/about/page.tsx",
+    "app/contact/page.tsx",
+    "app/home-client.tsx",
+    "app/host/page.tsx",
+    "app/membership/sponsor/page.tsx",
+    "scripts/seed.mjs"
+  ],
+  "/images/desert-production.png": [
+    "app/admin/workspace.tsx",
+    "app/api/admin/users/[id]/route.ts",
+    "app/gallery/page.tsx",
+    "app/home-client.tsx",
+    "components/page-hero.tsx",
+    "lib/admin-event-values.ts",
+    "scripts/seed.mjs"
+  ],
+  "/images/placeholders/model_placeholder.png": [
+    "app/api/admin/users/[id]/route.ts",
+    "app/api/admin/users/route.ts",
+    "lib/auth.ts",
+    "lib/member-placeholder.ts"
+  ],
+  "/images/daisy.jpg": [
+    "app/discover/page.tsx",
+    "app/gallery/page.tsx",
+    "app/home-client.tsx",
+    "app/membership/page.tsx",
+    "scripts/seed.mjs"
+  ],
+  "/images/desert-model.jpg": [
+    "app/events/page.tsx",
+    "app/gallery/page.tsx",
+    "app/home-client.tsx",
+    "app/page.tsx",
+    "components/admin-hero-manager.tsx",
+    "scripts/seed.mjs"
+  ],
+  "/images/neon-studio.png": [
+    "app/gallery/page.tsx",
+    "app/home-client.tsx",
+    "app/photographers/page.tsx",
+    "scripts/seed.mjs"
+  ],
+  "/images/scottsdale.jpg": [
+    "app/gallery/page.tsx",
+    "app/home-client.tsx",
+    "scripts/seed.mjs"
+  ],
+  "/images/poolside-network.png": [
+    "app/gallery/page.tsx",
+    "app/home-client.tsx",
+    "app/sponsorships/page.tsx",
+    "scripts/seed.mjs"
+  ],
+  "/images/models/model-08.jpg": [
+    "app/home-client.tsx",
+    "app/models/page.tsx",
+    "scripts/seed.mjs"
+  ],
+  "/images/models/model-13.jpg": [
+    "app/home-client.tsx",
+    "scripts/seed.mjs"
+  ],
+  "/images/models/model-16.jpg": [
+    "app/home-client.tsx",
+    "scripts/seed.mjs"
+  ],
+  "/images/models/model-19.jpg": [
+    "app/home-client.tsx",
+    "scripts/seed.mjs"
+  ],
+  "/images/models/model-22.jpg": [
+    "app/home-client.tsx",
+    "scripts/seed.mjs"
+  ],
+  "/images/placeholders/photographer_placeholder.png": [
+    "lib/camera-brands.ts",
+    "lib/member-placeholder.ts"
+  ],
+  "/images/placeholders/host-silhouette.png": [
+    "lib/member-placeholder.ts"
+  ],
+  "/images/placeholders/sponsor-silhouette.png": [
+    "lib/member-placeholder.ts"
+  ],
+  "/logos/fhm.svg": [
+    "scripts/seed.mjs"
+  ]
+}

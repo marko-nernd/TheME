@@ -1,0 +1,1 @@
+ALTER TABLE "members" ADD COLUMN "admin_approval_denied_at" timestamp with time zone;

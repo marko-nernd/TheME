@@ -1,0 +1,146 @@
+name: model-escape
+
+services:
+  database:
+    image: postgres:17-alpine
+    environment:
+      POSTGRES_DB: ${POSTGRES_DB:-model_escape}
+      POSTGRES_USER: ${POSTGRES_USER:-model_escape}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:?Set POSTGRES_PASSWORD in your private .env}
+    ports:
+      - "127.0.0.1:${POSTGRES_PORT:-5432}:5432"
+    volumes:
+      - model_escape_postgres:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${POSTGRES_USER:-model_escape} -d ${POSTGRES_DB:-model_escape}"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+    restart: unless-stopped
+
+  application:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    environment:
+      DATABASE_URL: postgresql://${POSTGRES_USER:-model_escape}:${POSTGRES_PASSWORD:?Set POSTGRES_PASSWORD in your private .env}@database:5432/${POSTGRES_DB:-model_escape}
+      INSTAGRAM_APP_ID: ${INSTAGRAM_APP_ID:-}
+      INSTAGRAM_APP_SECRET: ${INSTAGRAM_APP_SECRET:-}
+      INSTAGRAM_REDIRECT_URI: ${INSTAGRAM_REDIRECT_URI:-}
+      DATABASE_POOL_MAX: ${DATABASE_POOL_MAX:-10}
+      NEXT_PUBLIC_SITE_URL: ${NEXT_PUBLIC_SITE_URL:-http://localhost:3000}
+      NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY: ${NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY:-}
+      STRIPE_SECRET_KEY: ${STRIPE_SECRET_KEY:-}
+      STRIPE_WEBHOOK_SECRET: ${STRIPE_WEBHOOK_SECRET:-}
+      STRIPE_CREATOR_PRICE_ID: ${STRIPE_CREATOR_PRICE_ID:-}
+      STRIPE_PRO_PRICE_ID: ${STRIPE_PRO_PRICE_ID:-}
+      ID_DOCUMENT_ENCRYPTION_KEY: ${ID_DOCUMENT_ENCRYPTION_KEY:-}
+      MONITOR_SECRET: ${MONITOR_SECRET:?Set MONITOR_SECRET in your private .env}
+      MONITOR_CPU_THRESHOLD: ${MONITOR_CPU_THRESHOLD:-85}
+      MONITOR_MEMORY_THRESHOLD: ${MONITOR_MEMORY_THRESHOLD:-85}
+      MONITOR_APP_STORAGE_THRESHOLD_MB: ${MONITOR_APP_STORAGE_THRESHOLD_MB:-2048}
+      MONITOR_DATABASE_LATENCY_THRESHOLD: ${MONITOR_DATABASE_LATENCY_THRESHOLD:-1000}
+      SMTP_HOST: mailpit
+      SMTP_PORT: 1025
+      EMAIL_FROM: ${EMAIL_FROM:-Model Escape <verify@modelescape.local>}
+      MEDIA_LIBRARY_ROOT: /app/public
+    volumes:
+      - ./public:/app/public
+    ports:
+      - "127.0.0.1:${APP_PORT:-3000}:3000"
+    depends_on:
+      database:
+        condition: service_healthy
+      mailpit:
+        condition: service_started
+    healthcheck:
+      test: ["CMD", "node", "-e", "fetch('http://127.0.0.1:3000/api/health').then(r=>{if(!r.ok)process.exit(1)}).catch(()=>process.exit(1))"]
+      interval: 15s
+      timeout: 5s
+      start_period: 30s
+      retries: 5
+    restart: unless-stopped
+
+  account-lifecycle:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    entrypoint: ["node", "scripts/account-lifecycle-worker.mjs"]
+    environment:
+      DATABASE_URL: postgresql://${POSTGRES_USER:-model_escape}:${POSTGRES_PASSWORD:?Set POSTGRES_PASSWORD in your private .env}@database:5432/${POSTGRES_DB:-model_escape}
+      NEXT_PUBLIC_SITE_URL: ${NEXT_PUBLIC_SITE_URL:-http://localhost:3000}
+      STRIPE_SECRET_KEY: ${STRIPE_SECRET_KEY:-}
+      SMTP_HOST: mailpit
+      SMTP_PORT: 1025
+      EMAIL_FROM: ${EMAIL_FROM:-Model Escape <verify@modelescape.local>}
+    depends_on:
+      database:
+        condition: service_healthy
+      application:
+        condition: service_healthy
+      mailpit:
+        condition: service_started
+    healthcheck:
+      disable: true
+    restart: unless-stopped
+
+  system-monitor:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    entrypoint: ["node", "scripts/system-monitor-worker.mjs"]
+    environment:
+      DATABASE_URL: postgresql://${POSTGRES_USER:-model_escape}:${POSTGRES_PASSWORD:?Set POSTGRES_PASSWORD in your private .env}@database:5432/${POSTGRES_DB:-model_escape}
+      APPLICATION_METRICS_URL: http://application:3000/api/internal/metrics
+      MONITOR_SECRET: ${MONITOR_SECRET:?Set MONITOR_SECRET in your private .env}
+      MONITOR_INTERVAL_MS: ${MONITOR_INTERVAL_MS:-60000}
+      MONITOR_REQUIRED_SAMPLES: ${MONITOR_REQUIRED_SAMPLES:-3}
+      MONITOR_CPU_THRESHOLD: ${MONITOR_CPU_THRESHOLD:-85}
+      MONITOR_MEMORY_THRESHOLD: ${MONITOR_MEMORY_THRESHOLD:-85}
+      MONITOR_APP_STORAGE_THRESHOLD_MB: ${MONITOR_APP_STORAGE_THRESHOLD_MB:-2048}
+      MONITOR_DATABASE_LATENCY_THRESHOLD: ${MONITOR_DATABASE_LATENCY_THRESHOLD:-1000}
+      MONITOR_RESPONSE_TIME_THRESHOLD: ${MONITOR_RESPONSE_TIME_THRESHOLD:-2000}
+      ALERT_EMAIL: ${ALERT_EMAIL:-admin@modelescape.local}
+      SMTP_HOST: mailpit
+      SMTP_PORT: 1025
+      EMAIL_FROM: ${EMAIL_FROM:-Model Escape <verify@modelescape.local>}
+    depends_on:
+      database:
+        condition: service_healthy
+      application:
+        condition: service_healthy
+      mailpit:
+        condition: service_started
+    healthcheck:
+      disable: true
+    restart: unless-stopped
+
+  travel-mailer:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    entrypoint: ["node", "scripts/travel-email-worker.mjs"]
+    environment:
+      DATABASE_URL: postgresql://${POSTGRES_USER:-model_escape}:${POSTGRES_PASSWORD:?Set POSTGRES_PASSWORD in your private .env}@database:5432/${POSTGRES_DB:-model_escape}
+      NEXT_PUBLIC_SITE_URL: ${NEXT_PUBLIC_SITE_URL:-http://localhost:3000}
+      SMTP_HOST: mailpit
+      SMTP_PORT: 1025
+      EMAIL_FROM: ${EMAIL_FROM:-Model Escape <verify@modelescape.local>}
+    depends_on:
+      application:
+        condition: service_healthy
+      mailpit:
+        condition: service_started
+    healthcheck:
+      disable: true
+    restart: unless-stopped
+
+  mailpit:
+    image: axllent/mailpit:v1.28
+    ports:
+      - "127.0.0.1:${MAILPIT_WEB_PORT:-8025}:8025"
+      - "127.0.0.1:${MAILPIT_SMTP_PORT:-1025}:1025"
+    restart: unless-stopped
+
+volumes:
+  model_escape_postgres:

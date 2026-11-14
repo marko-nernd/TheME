@@ -1,0 +1,28 @@
+PRELAUNCH DEPENDENCY CHECK — 22 OCTOBER 2026
+
+This local implementation is not cleared for a public production launch.
+
+Read-only npm audit --omit=dev reported seven affected production packages:
+one critical package, five high, and one moderate. These are dependency
+advisories, not proof that every issue is exploitable in this application.
+
+Packages flagged: next, nodemailer, sharp, postcss (under Next), nanoid,
+source-map-js, baseline-browser-mapping.
+
+Keep the app local and Stripe in test mode while addressing these findings.
+The advisory set includes remote-code-execution reports for the installed
+Next.js version and image-processing-library issues. Windows-only issues
+do not directly describe this Linux container, but the complete set must
+still be assessed before deployment.
+
+Next security work
+1. Review official advisories and current patched versions.
+2. Upgrade Next within the supported release line and align eslint-config-next.
+3. Review the major-version migrations for Nodemailer and Sharp before upgrading.
+4. Refresh the affected transitive packages and lockfile.
+5. Rebuild Docker, rerun regression and local flow tests, and recheck the audit.
+6. Recheck avatar/portfolio upload, video posters, emails, payment pages, and
+   invoice downloads after those dependency changes.
+
+No forced dependency upgrades were applied as part of the dashboard work.
+This file records the local audit result; it is not a penetration-test report.

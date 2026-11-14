@@ -1,0 +1,51 @@
+Generator: built-in image_gen
+Output: model-journey-2026-10-19.png
+Purpose: current model journey, checked against local signup, login, participation, dashboard, and invoice code. Recommendations are not part of the implemented journey.
+
+PROMPT
+Use case: infographic-diagram.
+Create a polished, professional, highly legible landscape image diagram for the actual MODEL ESCAPE website's model user journey. This is a product workflow infographic, not a website screenshot. The audience is a non-technical platform owner and models using the platform.
+
+Brand style: Montserrat-style geometric sans-serif, charcoal #171715, warm off-white #f4f1ea, white cards, restrained hot pink #ff2d95 for numbered circles, arrows, and important actions. A small green check can mark the confirmed booking, but pink is the brand accent. Flat clean vector-like iconography, subtle thin borders, very restrained shadows, generous whitespace. No photography, no gradients, no fake UI, no giant decorative people. Sharp readable text. High-resolution wide landscape composition, approximately 3:2.
+
+Hierarchy and layout:
+Top header with small wordmark "MODEL ESCAPE" and large title "The model journey".
+Subtitle "From signup to a confirmed event booking".
+Three stacked horizontal phase lanes, each with THREE equally sized rounded cards. Nine numbered steps total. Each lane reads left to right. Draw directional pink arrows between neighboring cards. Use clean routed connectors in the generous outer margins to connect step 3 to step 4, and step 6 to step 7, without crossings or lines through text. Show all nine steps once only, numbered 01 through 09, in correct reading order. Phase headings outside the cards: "1. CREATE YOUR ACCOUNT", "2. FIND YOUR EVENT", "3. PAY, CONFIRM, ATTEND".
+Use simple matching line icons above card titles: user-plus, email, admin shield, dashboard, calendar-search, booking checklist, bank card, ticket/check, event/star.
+
+Card text must be verbatim and clear:
+01 title "Apply as a model"
+body "Basic membership starts free."
+02 title "Verify your email"
+body "Open the verification link."
+03 title "Account approval"
+body "Admin approves. Then sign in."
+04 title "Your dashboard"
+body "Add your photo and profile."
+small line "ID verification is optional."
+05 title "Find an event"
+body "Browse events or open an invitation."
+06 title "Review your booking"
+body "Choose an optional hotel or villa."
+small line "Event price + stay + service fee"
+07 title "Pay on the website"
+body "Secure embedded Stripe payment."
+small line "If payment fails, retry."
+08 title "Booking confirmed"
+body "6-character code + receipt + QR"
+small line "Confirmation email is sent."
+09 title "Attend and review"
+body "Attend. Review eligible collaborators."
+
+Bottom footer, three concise notes, with a restrained border separating it from the diagram:
+"Already approved? Sign in and start at step 04."
+"Paid model bookings go directly to payment — no host approval step."
+"Free events skip payment. Paid membership upgrades are optional."
+
+Accuracy constraints:
+Admin approval is only for initial account signup, NOT an approval request for paid model event bookings.
+Paid attendance becomes confirmed only after successful payment.
+ID verification is a separate optional profile badge, not mandatory for event checkout.
+Do not claim a QR scanner, Apple Wallet, refund automation, mandatory premium membership, or new features exist.
+Do not add other steps or invented fees. No spelling errors, no tiny footnotes, no overlapping elements.

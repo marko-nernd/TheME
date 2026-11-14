@@ -1,0 +1,76 @@
+MODEL ESCAPE — FIVE-PERSON USABILITY CHECK
+
+Purpose
+Check whether new people understand booking, payment, and event entry without coaching.
+Use localhost, test accounts, Stripe test cards, and fictional event data only.
+Do not collect real identity documents, card details, bank details, or private messages.
+
+Who to invite
+Two models, two photographers, and one host who have not helped build the site.
+Recruiting people and arranging sessions remains a task for the project owner.
+Plan 15–20 minutes per person. Ask permission before taking notes or recording.
+
+Opening script
+“We are testing the website, not you. Please say what you expect to happen as you
+go. I will avoid helping so we can discover what is unclear. No real payment is made.”
+
+Model and photographer tasks
+1. Sign in and explain what needs your attention on Home.
+2. Find an event for your account type. Explain the event price, optional stay,
+   service fee, and total before paying.
+3. Complete a test payment. Find the confirmation code and QR event pass.
+4. Add the event to a calendar and find directions and what to bring.
+5. Find the payment receipt and separate accommodation charge.
+6. Find the refund cutoff and explain the difference between canceling attendance
+   and requesting a refund. Do not issue a refund during the research session.
+7. Open Inbox, identify a conversation, and find Profile and Billing again.
+
+Host tasks
+1. Open Manage events and choose the correct event.
+2. Find confirmed participants, people awaiting payment, and event proceeds.
+3. Check in a fictional attendee using the six-character code.
+4. Try the same code again. Explain what the duplicate warning means.
+5. Locate a refund request and describe the decision before pressing any button.
+6. Find test payout setup and explain where event proceeds and service fees go.
+   Do not enter real bank or identity information.
+
+Record for each task
+Participant pseudonym / role:
+Task:
+Completed without help? yes / no
+Time to completion:
+Wrong turns or confusing labels:
+Exact words used by participant:
+Ease score: 1 very hard — 5 very easy
+Suggested improvement:
+
+Initial acceptance targets (not measured results)
+At least four of five participants find the main next action without help.
+All understand the total charge before payment.
+At least four of five find their event pass within 30 seconds after confirmation.
+All understand that attendance cancellation is not an automatic refund.
+The host recognizes a duplicate check-in and does not admit twice.
+No participant mistakes optional membership upgrades or ID verification for an
+extra requirement to book an otherwise available event.
+
+After the sessions
+Group issues by repeated confusion, financial risk, and accessibility impact.
+Fix payment misunderstandings and blocked tasks first. Retest those exact tasks.
+Keep personal opinions separate from observed failures. Do not claim the flow
+has passed this study until the sessions have actually taken place.
+
+Release checks still requiring owner action
+- Enable Stripe Connect in TEST mode and complete a host's test onboarding.
+- Confirm the connected account's transfer and bank-payout capabilities.
+- Verify a destination test payment and reversal using Stripe's test tools.
+- Configure and verify signed webhook delivery for success, failure, and refunds.
+- Test supported camera scanning on a physical phone over HTTPS; localhost on
+  another device is not the Mac's localhost. Manual confirmation codes remain available.
+- Decide live-country availability, taxes, disputes, processor-fee refunds, and
+  platform liability before any live payment launch.
+- Replace local Mailpit delivery with a verified email service before production.
+
+Useful Stripe references
+https://docs.stripe.com/connect/destination-charges?platform=web&ui=elements
+https://docs.stripe.com/connect/accounts-v2/connected-account-configuration
+https://docs.stripe.com/api/refunds/create
